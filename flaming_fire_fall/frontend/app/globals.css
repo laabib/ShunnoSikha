@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  background: #05070f;
+  color: #dbe3f0;
+  font-family: Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Layered mission-control background ---- */
+.mc-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(1100px 620px at 82% -8%, rgba(34, 211, 238, 0.10), transparent 60%),
+    radial-gradient(1000px 700px at 8% 108%, rgba(249, 115, 22, 0.13), transparent 58%),
+    radial-gradient(760px 520px at 50% 46%, rgba(217, 70, 239, 0.05), transparent 62%),
+    linear-gradient(180deg, #070b16 0%, #05070f 100%);
+}
+.mc-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(44, 61, 99, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(44, 61, 99, 0.16) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 40%, transparent 100%);
+}
+.mc-grain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.035;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- Custom scrollbars in-palette ---- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2c3d63 #0a0f1e;
+}
+*::-webkit-scrollbar { width: 9px; height: 9px; }
+*::-webkit-scrollbar-track { background: #0a0f1e; }
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2c3d63, #1b2742);
+  border-radius: 8px;
+  border: 2px solid #0a0f1e;
+}
+*::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #f59e0b, #ea580c); }
+
+/* ---- Reusable surfaces ---- */
+@layer components {
+  .panel {
+    @apply rounded-xl border border-line bg-void-850/80 backdrop-blur-sm shadow-panel;
+  }
+  .panel-head {
+    @apply flex items-center gap-2 border-b border-line px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-mist-400;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-md border border-line bg-void-800 px-2.5 py-1 text-[11px] font-medium text-mist-300 transition-colors;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-line-bright bg-void-700 px-3.5 py-2 text-sm font-medium text-mist-100 transition-all hover:border-ember-500/60 hover:bg-void-600 hover:shadow-glow active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .btn-primary {
+    @apply border-ember-600/50 bg-gradient-to-b from-ember-600 to-ember-700 text-void-950 font-semibold hover:from-ember-500 hover:to-ember-600 hover:shadow-glow;
+  }
+  .btn-ion {
+    @apply border-ion-500/40 bg-ion-500/10 text-ion-300 hover:bg-ion-500/20 hover:shadow-glow-ion;
+  }
+  .input {
+    @apply w-full rounded-lg border border-line bg-void-900 px-3 py-2 text-sm text-mist-100 placeholder-mist-500 outline-none transition-colors focus:border-ion-500/60 focus:ring-1 focus:ring-ion-500/30;
+  }
+  .label {
+    @apply mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-mist-400;
+  }
+  .metric-num {
+    @apply font-mono tabular-nums;
+  }
+}
+
+/* ---- Range sliders ---- */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f97316, #f59e0b);
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #fcd34d;
+  border: 2px solid #05070f;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.7);
+  cursor: pointer;
+  transition: transform 0.12s;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+input[type="range"]::-moz-range-thumb {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: #fcd34d; border: 2px solid #05070f; cursor: pointer;
+}
+
+/* ---- Markdown rendering ---- */
+.md { font-size: 0.9rem; line-height: 1.65; color: #dbe3f0; }
+.md > *:first-child { margin-top: 0; }
+.md h1, .md h2, .md h3, .md h4 {
+  font-family: Orbitron, Inter, sans-serif;
+  color: #fcd34d;
+  margin: 1em 0 0.5em;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+.md h1 { font-size: 1.15rem; } .md h2 { font-size: 1.05rem; } .md h3 { font-size: 0.98rem; }
+.md p { margin: 0.55em 0; }
+.md ul, .md ol { margin: 0.5em 0; padding-left: 1.3em; }
+.md li { margin: 0.28em 0; }
+.md ul li::marker { color: #f59e0b; }
+.md strong { color: #eef2f9; font-weight: 600; }
+.md em { color: #67e8f9; }
+.md a { color: #22d3ee; text-decoration: underline; text-underline-offset: 2px; }
+.md a:hover { color: #67e8f9; }
+.md code {
+  font-family: 'JetBrains Mono', monospace;
+  background: #0e1526; border: 1px solid #1e2a47;
+  padding: 0.1em 0.4em; border-radius: 5px; font-size: 0.82em; color: #fbbf24;
+}
+.md pre {
+  background: #070b16; border: 1px solid #1e2a47; border-radius: 10px;
+  padding: 0.9em; overflow-x: auto; margin: 0.7em 0;
+}
+.md pre code { background: none; border: none; padding: 0; color: #b6c2d9; }
+.md blockquote {
+  border-left: 3px solid #f97316; background: rgba(249, 115, 22, 0.07);
+  padding: 0.5em 0.9em; margin: 0.7em 0; border-radius: 0 8px 8px 0; color: #dbe3f0;
+}
+.md table { border-collapse: collapse; width: 100%; margin: 0.7em 0; font-size: 0.82rem; }
+.md th, .md td { border: 1px solid #1e2a47; padding: 0.4em 0.7em; text-align: left; }
+.md th { background: #0e1526; color: #fbbf24; }
+.md hr { border: none; border-top: 1px solid #1e2a47; margin: 1em 0; }
+
+/* ---- Misc animation helpers ---- */
+.stagger > * { animation: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.stagger > *:nth-child(1) { animation-delay: 0.03s; }
+.stagger > *:nth-child(2) { animation-delay: 0.08s; }
+.stagger > *:nth-child(3) { animation-delay: 0.13s; }
+.stagger > *:nth-child(4) { animation-delay: 0.18s; }
+.stagger > *:nth-child(5) { animation-delay: 0.23s; }
+.stagger > *:nth-child(6) { animation-delay: 0.28s; }
+.stagger > *:nth-child(7) { animation-delay: 0.33s; }
+.stagger > *:nth-child(8) { animation-delay: 0.38s; }
+
+.text-glow-ember { text-shadow: 0 0 18px rgba(245, 158, 11, 0.5); }
+.text-glow-ion { text-shadow: 0 0 18px rgba(34, 211, 238, 0.5); }
+
+.skeleton {
+  background: linear-gradient(90deg, #0e1526 25%, #1b2742 50%, #0e1526 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}

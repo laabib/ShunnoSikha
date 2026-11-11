@@ -1,0 +1,139 @@
+{
+  "model_name": "Fine-Tuned Qwen-0.6B LoRA Flammability Classifier",
+  "base_model": "Qwen/Qwen3-0.6B",
+  "task": "Microgravity Flame-Spread Regime Prediction",
+  "device": "mps",
+  "epochs": 12,
+  "best_val_accuracy": 0.4167,
+  "test_accuracy": 0.1579,
+  "test_macro_f1": 0.1389,
+  "classes": [
+    "Sustained Burn",
+    "Radiative Extinction",
+    "Blowoff"
+  ],
+  "confusion_matrix": [
+    [
+      1,
+      4,
+      2
+    ],
+    [
+      2,
+      2,
+      3
+    ],
+    [
+      2,
+      3,
+      0
+    ]
+  ],
+  "classification_report": {
+    "Sustained Burn": {
+      "precision": 0.2,
+      "recall": 0.14285714285714285,
+      "f1-score": 0.16666666666666666,
+      "support": 7.0
+    },
+    "Radiative Extinction": {
+      "precision": 0.2222222222222222,
+      "recall": 0.2857142857142857,
+      "f1-score": 0.25,
+      "support": 7.0
+    },
+    "Blowoff": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 5.0
+    },
+    "accuracy": 0.15789473684210525,
+    "macro avg": {
+      "precision": 0.14074074074074075,
+      "recall": 0.14285714285714285,
+      "f1-score": 0.13888888888888887,
+      "support": 19.0
+    },
+    "weighted avg": {
+      "precision": 0.15555555555555556,
+      "recall": 0.15789473684210525,
+      "f1-score": 0.15350877192982457,
+      "support": 19.0
+    }
+  },
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.5205078125,
+      "val_accuracy": 0.3333333333333333,
+      "val_f1": 0.16666666666666666
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.3271484375,
+      "val_accuracy": 0.3333333333333333,
+      "val_f1": 0.16666666666666666
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.248046875,
+      "val_accuracy": 0.3333333333333333,
+      "val_f1": 0.16666666666666666
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.15234375,
+      "val_accuracy": 0.3333333333333333,
+      "val_f1": 0.26936026936026936
+    },
+    {
+      "epoch": 5,
+      "train_loss": 1.205078125,
+      "val_accuracy": 0.3333333333333333,
+      "val_f1": 0.26936026936026936
+    },
+    {
+      "epoch": 6,
+      "train_loss": 1.0771484375,
+      "val_accuracy": 0.3333333333333333,
+      "val_f1": 0.16666666666666666
+    },
+    {
+      "epoch": 7,
+      "train_loss": 1.1396484375,
+      "val_accuracy": 0.4166666666666667,
+      "val_f1": 0.3111111111111111
+    },
+    {
+      "epoch": 8,
+      "train_loss": 1.1220703125,
+      "val_accuracy": 0.25,
+      "val_f1": 0.13333333333333333
+    },
+    {
+      "epoch": 9,
+      "train_loss": 1.07421875,
+      "val_accuracy": 0.16666666666666666,
+      "val_f1": 0.1111111111111111
+    },
+    {
+      "epoch": 10,
+      "train_loss": 1.07421875,
+      "val_accuracy": 0.16666666666666666,
+      "val_f1": 0.1693121693121693
+    },
+    {
+      "epoch": 11,
+      "train_loss": 1.0693359375,
+      "val_accuracy": 0.16666666666666666,
+      "val_f1": 0.12121212121212122
+    },
+    {
+      "epoch": 12,
+      "train_loss": 1.06640625,
+      "val_accuracy": 0.25,
+      "val_f1": 0.24444444444444446
+    }
+  ]
+}
